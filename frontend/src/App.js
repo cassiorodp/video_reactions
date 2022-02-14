@@ -18,17 +18,19 @@ function App() {
   }, []);
 
   return (
-    <section className="App">
-      <YouTube videoId='7BpfaezgWCg' />
-      <div>
-        {reactions.map(({ _id, name, votes }) => (
-          <Reactions
-            key={_id}
-            name={name}
-            id={_id}
-            votes={votes}
-          />
-        ))}
+    <section className="app">
+      <div className='video-container'>
+        <YouTube videoId='7BpfaezgWCg' />
+        <div className='reactions-container'>
+          {reactions.map(({ _id, name, votes }) => (
+            <Reactions
+              key={_id}
+              name={name}
+              id={_id}
+              votes={votes}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

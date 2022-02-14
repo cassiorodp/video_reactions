@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import socket from '../utils/socketClient';
+import sad from '../images/sad.png'
+import happy from '../images/happy.png'
+import loved from '../images/loved.png'
+import { Button } from 'react-bootstrap';
 
 export default function Reactions({id, votes, name}) {
   const [currentVotes, setCurrentVotes] = useState(votes);
 
+  const imgDictionary = {
+    sad,
+    happy,
+    loved
+  }
 
   useEffect(() => {
     socket.on('refreshCurrentVotes', (reaction) => {
@@ -16,10 +25,10 @@ export default function Reactions({id, votes, name}) {
   }
 
   return (
-    <div>
-      <p>{name}</p>
+    <div className='reactions'>
+      <img src={imgDictionary[name]} alt={name}/>
       <p>{currentVotes}</p>
-      <button onClick={() => handleClick(id)}>Reagir!</button>
+      <Button onClick={() => handleClick(id)}>Reagir!</Button>
     </div>
   )
 }
